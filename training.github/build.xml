@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Testing Ant" default="jar" basedir=".">
+	<property name="src.directory" location="src"/>
+	<property name="build.directory" location="bin"/>
+	<property name="dist_directory" location="dist"/>
+	<property name="docs_directory" location="docs"/>
+	
+	<target name="clean">
+		<delete dir="${build.directory}"/>
+		<delete dir="${dist_directory}"/>
+		<delete dir="${docs_directory}"/>
+	</target>
+	
+	<target name="makedirs" depends="clean">
+		<mkdir dir="${build.directory}"/>
+		<mkdir dir="${dist_directory}"/>
+		<mkdir dir="${docs_directory}"/>
+	</target>
+	
+	<target name="compile" depends="clean, makedirs">
+		<javac includeantruntime="false" srcdir="${src.directory}" destdir="${build.directory}"/>
+	</target>
+	
+	<target name="jar" depends="compile">
+		<jar destfile="${dist_directory}\myJarFromAnt.jar" basedir="${build.directory}">
+			<manifest>
+				<attribute name="Main-class" value="test.MathTester"/>
+			</manifest>
+		</jar>
+	</target>
+	
+</project>

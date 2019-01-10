@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Ant MarcoDef Example" default="run" basedir=".">
+  <!-- Parameter as attribute -->
+  <macrodef name="attr-example">
+    <attribute name="personName" default="mum"/>
+    <sequential>
+      <echo message="******************"/>
+      <echo message="*  attr-example  *"/>
+      <echo message="******************"/>
+      <echo message="Hello @{personName}!"/>
+    </sequential>
+  </macrodef>
+ 
+  <!-- Parameter as text -->
+  <macrodef name="text-example">
+    <text name="who"/>
+    <sequential>
+      <echo message="******************"/>
+      <echo message="*  text-example  *"/>
+      <echo message="******************"/>
+      <echo message="Hello @{who}!"/>
+    </sequential>
+  </macrodef>
+ 
+ 
+ 
+  <!-- Run all task defined by MarcoDef above -->
+  <target name="run">
+    <attr-example personName="John" />
+    <echo message=""/>
+ 
+    <text-example>World</text-example>
+    <echo message=""/>
+  </target>
+</project>
